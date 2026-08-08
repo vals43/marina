@@ -140,9 +140,10 @@ let () =
   prerr_endline (String.concat "" ["marina server listening on port "; string_of_int port]);
   while true do
     let (fd, _) = Unix.accept sock in
-    let ic = Unix.in_channel_of_descr fd in
-    let oc = Unix.out_channel_of_descr fd in
-    handle_client ic oc;
-    close_out oc;
-    close_in ic
+    try
+      let ic = Unix.in_channel_of_descr fd in
+      let oc = Unix.out_channel_of_descr fd in
+      handle_client ic oc;
+      close_out oc
+    with _ -> ()
   done
