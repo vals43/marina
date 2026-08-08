@@ -1,0 +1,11 @@
+.git
+.idea
+doc
+*.cmi
+*.cmo
+*.log
+*.cache
+.depend
+marina
+server
+test
